@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F3F1ED">
+  <meta name="description" content="درباره‌ی میکل؛ راهی ساده‌تر برای مدیریت فروش، هزینه‌ها، موجودی و سفارش‌های کسب‌وکارهای غذایی.">
+  <title>درباره‌ی میکل | مدیریت روزانه‌ی کسب‌وکار</title>
+  <link rel="icon" type="image/png" href="assets/mikel-logo.png">
+  <style>
+    @font-face {font-family:"IRANSansFaNum";src:url("assets/IRANSans-FaNum-Medium.ttf") format("truetype");font-style:normal;font-weight:500;font-display:swap;}
+    :root {--paper:#F3F1ED;--ink:#192827;--orange:#F17938;--muted:#64748b;--line:#e2e8f0;--green:#087f7a;}
+    * {box-sizing:border-box;}
+    html {scroll-behavior:smooth;}
+    body {margin:0;background:var(--paper);color:var(--ink);font-family:"IRANSansFaNum",Tahoma,sans-serif;line-height:1.8;}
+    a {color:inherit;text-decoration:none;}
+    .container {width:min(100% - 40px,1320px);margin-inline:auto;}
+    .topbar {position:sticky;top:0;z-index:20;background:rgba(243,241,237,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(25,40,39,.1);}
+    .nav {height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+    .brand {display:flex;align-items:center;gap:9px;font-size:1.25rem;font-weight:800;color:#192827;white-space:nowrap;}
+    .brand-mark {display:grid;place-items:center;width:44px;height:44px;overflow:hidden;border-radius:12px;background:#fff;}
+    .brand-mark img {width:100%;height:100%;object-fit:contain;}
+    .nav-links {display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:.9rem;color:#334443;}
+    .nav-links a:hover {color:var(--orange);}
+    .button {display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:9px 18px;border-radius:12px;background:var(--orange);color:#fff;font-size:.9rem;font-weight:700;box-shadow:0 8px 20px rgba(241,121,56,.18);transition:transform .2s ease,box-shadow .2s ease;}
+    .button:hover {transform:translateY(-2px);box-shadow:0 12px 24px rgba(241,121,56,.25);}
+    .main {padding:70px 0 96px;}
+    .about-hero {position:relative;overflow:hidden;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:clamp(28px,6vw,78px);border:1px solid rgba(25,40,39,.08);border-radius:30px;background:rgba(255,255,255,.9);box-shadow:0 24px 60px rgba(25,40,39,.07);}
+    .about-hero::before {content:"";position:absolute;width:390px;height:390px;left:-140px;top:-150px;border-radius:50%;background:radial-gradient(circle,rgba(241,121,56,.15),transparent 68%);pointer-events:none;}
+    .eyebrow {display:inline-flex;align-items:center;gap:9px;margin-bottom:12px;color:var(--green);font-size:.88rem;font-weight:700;}
+    .eyebrow::before {content:"";width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(241,121,56,.13);}
+    h1 {margin:0 0 16px;font-size:clamp(2.35rem,5vw,4rem);line-height:1.25;letter-spacing:-.04em;color:#192827;}
+    .lead {max-width:760px;margin:0;color:#526176;font-size:clamp(1rem,1.8vw,1.25rem);line-height:2;}
+    .brand-art {position:relative;display:grid;place-items:center;min-height:300px;border-radius:24px;background:linear-gradient(145deg,#f8f6f1,#fff);}
+    .brand-art img {width:min(70%,260px);height:auto;object-fit:contain;filter:drop-shadow(0 16px 26px rgba(25,40,39,.12));}
+    .values {display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+    .value-card {padding:24px;border:1px solid var(--line);border-radius:18px;background:#fff;}
+    .value-card h2 {margin:0 0 8px;color:#192827;font-size:1.15rem;}
+    .value-card p {margin:0;color:var(--muted);font-size:.9rem;}
+    .next-step {margin-top:40px;text-align:center;}
+    .next-step h2 {margin:0 0 18px;color:#192827;font-size:clamp(1.5rem,3vw,2rem);}
+    footer {padding:30px 0;background:#192827;color:#cbd5e1;text-align:center;font-size:.82rem;}
+    @media(max-width:800px) {.nav{height:auto;min-height:72px;flex-wrap:wrap;padding-block:12px}.nav-links{order:3;width:100%;justify-content:center;flex-wrap:wrap}.about-hero{grid-template-columns:1fr;gap:28px}.brand-art{min-height:220px}.values{grid-template-columns:1fr;}}
+    @media(max-width:480px) {.container{width:min(100% - 28px,1320px)}.nav{gap:10px}.nav-links{gap:12px;font-size:.78rem}.nav>.button{font-size:.78rem;padding:7px 10px}.main{padding:36px 0 60px}.about-hero{padding:24px;border-radius:22px}.brand-art{min-height:180px}}
+    @media(prefers-reduced-motion:reduce) {html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="ناوبری اصلی">
+      <a class="brand" href="index.html#top" aria-label="میکل، صفحه اصلی"><span class="brand-mark"><img src="assets/mikel-logo.png" alt=""></span><span>میکل</span></a>
+      <div class="nav-links"><a href="index.html#pricing">تعرفه‌ها</a><a href="index.html#blog">بلاگ</a><a href="updates.html">تاریخچه‌ی به‌روزرسانی</a><a href="about.html" aria-current="page">درباره‌ی ما</a></div>
+      <a class="button" href="index.html#pricing">رایگان شروع کنید</a>
+    </nav>
+  </header>
+  <main class="main container">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div><span class="eyebrow">درباره‌ی میکل</span><h1 id="about-title">مدیریت ساده‌تر، برای وقت بیشتر کنار مشتری</h1><p class="lead">میکل برای این ساخته شده که مدیریت روزانه‌ی کسب‌وکارهای غذایی روشن‌تر و ساده‌تر باشد. فروش، هزینه‌ها، موجودی و سفارش‌ها در یک تجربه‌ی منظم کنار هم قرار می‌گیرند تا حساب‌وکتاب روزانه وقت کمتری از شما بگیرد.</p></div>
+      <div class="brand-art" aria-hidden="true"><img src="assets/mikel-logo.png" alt=""></div>
+    </section>
+    <section class="values" aria-label="حوزه‌های مدیریت در میکل">
+      <article class="value-card"><h2>فروش و سفارش‌ها</h2><p>ثبت فروش و مرور سفارش‌های روزانه در یک نمای مرتب.</p></article>
+      <article class="value-card"><h2>هزینه و موجودی</h2><p>مدیریت خریدها و مواد اولیه برای دید بهتر به دخل‌وخرج.</p></article>
+      <article class="value-card"><h2>گزارش‌های روشن</h2><p>مرور خلاصه‌ی عملکرد برای تصمیم‌گیری آگاهانه‌تر.</p></article>
+    </section>
+    <section class="next-step"><h2>با میکل، شروع مدیریت آسان‌تر است</h2><a class="button" href="index.html#pricing">مشاهده‌ی امکانات و تعرفه‌ها</a></section>
+  </main>
+  <footer><div class="container">© ۱۴۰۵ میکل · تمامی حقوق محفوظ است.</div></footer>
+</body>
+</html>
