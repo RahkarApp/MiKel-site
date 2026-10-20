@@ -98,7 +98,7 @@
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #192827; font-weight: 700; font-size: .84rem; }
     .eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(241,121,56,.1); }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { margin: 17px 0 18px; max-width: 600px; font-size: var(--type-heading-1); line-height: 1.25; letter-spacing: -.055em; font-weight: var(--weight-bold); text-align:start; }
+    h1 { margin: 17px 0 18px; max-width: 600px; font-size: var(--type-heading-2); line-height: 1.25; letter-spacing: -.055em; font-weight: var(--weight-bold); text-align:start; }
     h2 { font-size:var(--type-heading-4);font-weight:var(--weight-bold); }
     .type-heading-1,.type-heading-2,.type-heading-3,.type-heading-4,.type-heading-5,.type-heading-6 {font-weight:var(--weight-bold);line-height:1.3;}
     .type-heading-1 {font-size:var(--type-heading-1);}
@@ -220,6 +220,7 @@
     .workflow-visual {aspect-ratio:1.9;padding:0;isolation:isolate;background:#192827;}
     .workflow-visual::before {display:none;}
     .workflow-shot {position:absolute;top:-10%;left:-12.5%;width:125%;max-width:none;height:auto;transition:opacity .24s ease;}
+    .workflow-shot[src$="workflow-dashboard.png"],.workflow-shot[src$="workflow-orders.png"],.workflow-shot[src$="workflow-sales.png"],.workflow-shot[src$="workflow-expenses.png"] {top:0;left:0;width:100%;height:100%;object-fit:contain;}
     .workflow-visual.is-changing .workflow-shot {opacity:0;}
     .workflow-visual-label {position:absolute;z-index:2;right:14px;top:14px;padding:6px 11px;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(25,40,39,.68);color:#fff;font-size:.72rem;backdrop-filter:blur(8px);}
     .ledger-card::before {content:"";position:absolute;width:200px;height:200px;background:rgba(219,234,254,.55);border-radius:50%;top:-120px;left:-70px;}
@@ -265,8 +266,37 @@
     .faq-item summary::-webkit-details-marker {display:none;}
     .faq-item summary::after {content:"+";font-size:1.35rem;font-weight:500;color:#192827;line-height:1;}
     .faq-item[open] summary::after {content:"−";}
+    .faq-item .faq-answer {display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(-8px);transition:grid-template-rows .55s ease,opacity .4s ease,transform .55s cubic-bezier(.22,.8,.25,1);}
+    .faq-item[open] .faq-answer {grid-template-rows:1fr;opacity:1;transform:translateY(0);}
+    .faq-answer-inner {min-height:0;overflow:hidden;}
     .faq-item p {color:var(--muted);font-size:.9rem;margin:0;padding:0 0 17px;}
+    .testimonials-section {padding:82px 0;background:#F3F1ED;}
+    .testimonials-carousel {display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:12px;direction:ltr;}
+    .testimonials-window {min-width:0;overflow:hidden;padding:12px 0 16px;margin:-12px 0 -16px;}
+    .testimonials-track {display:flex;flex-direction:row;direction:ltr;align-items:stretch;gap:16px;will-change:transform;transition:transform .72s cubic-bezier(.22,.75,.2,1);}
+    .testimonial-card {display:flex;flex:0 0 auto;flex-direction:column;align-items:flex-start;min-height:205px;padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(25,40,39,.045);direction:rtl;text-align:right;opacity:.74;transform:scale(.93);transform-origin:center center;transition:transform .72s cubic-bezier(.22,.75,.2,1),opacity .72s ease,border-color .72s ease,box-shadow .72s ease;}
+    .testimonial-card.is-center {position:relative;z-index:1;opacity:1;transform:scale(1.045);border-color:rgba(241,121,56,.48);box-shadow:0 16px 34px rgba(25,40,39,.11);}
+    .testimonial-meta {display:flex;align-items:center;gap:12px;direction:rtl;margin-bottom:14px;max-width:100%;}
+    .testimonial-mark {display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:rgba(241,121,56,.12);color:var(--orange);font-size:1.8rem;font-weight:700;line-height:1;}
+    .testimonial-card p {margin:0;color:var(--muted);font-size:.9rem;line-height:1.9;}
+    .testimonial-author {margin:0;padding:0;color:#192827;font-size:.92rem;font-weight:700;}
+    .testimonial-arrow {display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;color:#192827;font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(25,40,39,.07);transition:background .2s ease,color .2s ease,transform .2s ease;}
+    .testimonial-arrow:hover {background:var(--orange);color:#fff;transform:scale(1.06);}
+    .testimonial-arrow:focus-visible {outline:3px solid rgba(241,121,56,.4);outline-offset:3px;}
+    @media (max-width:720px) {
+      .testimonials-section {padding:58px 0;}
+      .testimonials-carousel {grid-template-columns:32px minmax(0,1fr) 32px;gap:6px;}
+      .testimonials-track {gap:8px;}
+      .testimonial-card {min-height:230px;padding:12px 9px;}
+      .testimonial-meta {gap:6px;margin-bottom:9px;}
+      .testimonial-mark {flex-basis:28px;width:28px;height:28px;font-size:1.35rem;border-radius:9px;}
+      .testimonial-card p {font-size:.68rem;line-height:1.75;}
+      .testimonial-author {font-size:.66rem;}
+      .testimonial-card.is-center {transform:scale(1.035);}
+      .testimonial-arrow {width:32px;height:32px;font-size:1.15rem;}
+    }
     .pricing-section,.blog-section,.updates-section,.about-section {padding:82px 0;background:#F3F1ED;}
+    .blog-section {padding-bottom:132px;}
     .pricing-section {padding:34px 0 38px;}
     .pricing-section .section-head {margin-bottom:18px;}
     .pricing-section .section-head h2 {font-size:32px;margin-bottom:4px;}
@@ -362,16 +392,66 @@
     .field input:focus,.field textarea:focus {outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
     .field textarea {min-height:90px;resize:vertical;}
     .form-card .button {width:100%;}
-
-    footer {background:#192827;color:#e7ecea;padding:45px 0 20px;}
-    .footer-main {display:flex;justify-content:space-between;gap:30px;align-items:flex-start;padding-bottom:30px;border-bottom:1px solid rgba(203,213,225,.14);}
-    footer .brand {color:white;}
-    footer .brand-mark {background:#F3F1ED;}
-    .footer-description {max-width:350px;color:#b8c4c1;font-size:.85rem;margin:13px 0 0;}
-    .footer-links {display:flex;flex-wrap:wrap;gap:22px;color:#cbd5e1;font-size:.82rem;}
-    .footer-links a:hover {color:white;}
-    .footer-bottom {display:flex;justify-content:space-between;gap:20px;align-items:center;padding-top:17px;color:#94a3b8;font-size:.74rem;}
-
+    .site-footer {background:#192827;color:#f8fafc;padding:36px 0 18px;border-top:1px solid #29413e;}
+    .footer-main {display:grid;grid-template-columns:minmax(300px,1.8fr) repeat(3,minmax(120px,1fr));align-items:start;gap:30px;direction:rtl;}
+    .footer-brand {grid-column:1;grid-row:1;direction:rtl;text-align:right;}
+    .footer-links-column:nth-of-type(1) {grid-column:2;grid-row:1;}
+    .footer-links-column:nth-of-type(2) {grid-column:3;grid-row:1;}
+    .footer-links-column:nth-of-type(3) {grid-column:4;grid-row:1;}
+    .footer-brand h2 {margin:0 0 8px;color:#f8fafc;font-size:16px;font-weight:700;line-height:1.8;}
+    .footer-address {margin:0;color:#cbd5d1;font-size:12px;font-style:normal;line-height:1.9;}
+    .footer-logos {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:start;align-items:center;gap:8px;margin-top:16px;direction:ltr;}
+    .footer-logo {display:flex;align-items:center;justify-content:center;min-width:0;height:66px;padding:7px;border:1px solid #e5e7eb;border-radius:9px;background:#fff;}
+    .footer-logo img {display:block;width:100%;height:100%;object-fit:contain;}
+    .footer-links-column {direction:rtl;text-align:right;}
+    .footer-column-title {margin:0 0 10px;color:#f8fafc;font-size:13px;font-weight:700;line-height:1.8;}
+    .footer-links-list {display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none;}
+    .footer-links-list a,.footer-links-list span {color:#cbd5d1;font-size:12px;font-weight:400;line-height:1.8;text-decoration:none;transition:color .2s ease;}
+    .footer-links-list a:hover {color:#F17938;}
+    .site-footer {position:relative;padding-top:82px;}
+    .site-footer .container {position:relative;}
+.footer-social-card {position:absolute;z-index:3;top:-82px;left:0;right:0;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:136px;padding:24px 32px;overflow:hidden;border:1px solid rgba(255,255,255,.34);border-radius:26px;background:linear-gradient(120deg,#192827 0%,#087f7a 58%,#0b6b63 100%);box-shadow:0 22px 44px rgba(10,31,29,.28),0 7px 16px rgba(10,31,29,.18);direction:ltr;}
+.footer-social-card::before,.footer-social-card::after {position:absolute;content:"";border:1px solid rgba(255,255,255,.14);border-radius:50%;pointer-events:none;}
+.footer-social-card::before {width:330px;height:330px;left:-115px;top:-210px;box-shadow:0 0 0 35px rgba(255,255,255,.04),0 0 0 75px rgba(255,255,255,.03);}
+.footer-social-card::after {width:190px;height:190px;right:40%;bottom:-155px;}
+.footer-social-icons {position:relative;z-index:1;display:flex;align-items:center;gap:10px;flex:0 0 auto;}
+.footer-social-icon {display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.94);color:#087f7a;box-shadow:0 3px 8px rgba(6,45,41,.16);}
+    .footer-social-icon img {display:block;width:22px;height:22px;object-fit:contain;}
+.footer-social-copy {position:relative;z-index:1;display:flex;align-items:center;gap:14px;direction:rtl;text-align:right;}
+    .footer-social-brand {display:block;width:52px;height:52px;flex:0 0 52px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.14));}
+.footer-social-title {margin:0;color:#fff;font-size:var(--type-body-1);font-weight:400;line-height:1.8;}
+@media(max-width:720px){.site-footer {padding-top:70px;}.footer-social-card {top:-70px;min-height:106px;padding:16px 18px;gap:12px;border-radius:22px;}.footer-social-icons {gap:7px;}.footer-social-icon {width:36px;height:36px;}.footer-social-icon img {width:19px;height:19px;}.footer-social-copy {gap:10px;}.footer-social-brand {width:42px;height:42px;flex-basis:42px;}}
+@media(max-width:420px){.site-footer {padding-top:62px;}.footer-social-card {top:-62px;padding:13px 10px;gap:9px;border-radius:18px;}.footer-social-icons {gap:6px;}.footer-social-icon {width:32px;height:32px;}.footer-social-icon img {width:17px;height:17px;}.footer-social-brand {width:36px;height:36px;flex-basis:36px;}}
+    .footer-bottom {display:flex;align-items:center;justify-content:center;gap:24px;margin-top:24px;padding-top:15px;border-top:1px solid #35504c;direction:ltr;}
+    .footer-copyright {max-width:100%;direction:rtl;text-align:center;}
+    .footer-copyright p {margin:0;color:#cbd5d1;font-size:10px;line-height:1.8;}
+    .footer-copyright a {color:#f8fafc;text-decoration:none;transition:color .2s ease;}
+    .footer-copyright a:hover {color:#F17938;}
+    @media(max-width:980px) {
+      .footer-main {grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
+      .footer-brand {grid-column:1/-1;grid-row:1;}
+      .footer-links-column {grid-row:auto;}
+      .footer-links-column:nth-of-type(1) {grid-column:1;grid-row:2;}
+      .footer-links-column:nth-of-type(2) {grid-column:2;grid-row:2;}
+      .footer-links-column:nth-of-type(3) {grid-column:1;grid-row:3;}
+      .footer-bottom {align-items:center;}
+    }
+    @media(max-width:720px) {
+      .site-footer {padding:28px 0 16px;}
+      .footer-main {grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px;}
+      .footer-brand {grid-column:1/-1;}
+      .footer-links-column:nth-of-type(1),.footer-links-column:nth-of-type(2) {grid-row:2;}
+      .footer-links-column:nth-of-type(3) {grid-column:1/-1;grid-row:3;}
+      .footer-bottom {flex-direction:column;align-items:center;gap:12px;}
+      .footer-copyright {max-width:100%;text-align:center;}
+    }
+    @media(max-width:420px) {
+      .footer-main {grid-template-columns:1fr;gap:18px;}
+      .footer-brand,.footer-links-column:nth-of-type(1),.footer-links-column:nth-of-type(2),.footer-links-column:nth-of-type(3) {grid-column:1;grid-row:auto;}
+      .footer-logos {grid-template-columns:repeat(3,minmax(0,1fr));}
+      .footer-bottom {align-items:center;}
+      .footer-copyright {text-align:center;}
+    }
     @media (max-width: 980px) {
       .hero {min-height:0;padding:38px 0 44px;}
       .hero-grid {grid-template-columns:1fr;gap:42px;}
@@ -406,7 +486,7 @@
       .nav-links a {padding:10px 12px;border-radius:8px;}
       .nav-links a:hover {background:var(--paper);}
       .hero {padding:36px 0 42px;}
-      h1 {font-size:clamp(var(--type-heading-5),8vw,var(--type-heading-3));}
+      h1 {font-size:var(--type-heading-2);}
       h2 {font-size:var(--type-heading-5);}
       .hero-copy {font-size:1rem;}
       .video-section {padding:58px 0 28px;}
@@ -450,9 +530,6 @@
       .cta-action {margin-top:22px;}
       .cta-action .button {width:100%;}
       .form-row {grid-template-columns:1fr;gap:0;}
-      .footer-main {display:block;}
-      .footer-links {margin-top:22px;gap:12px 18px;}
-      .footer-bottom {align-items:flex-start;flex-direction:column;gap:4px;}
     }
     @media (max-width: 420px) {
       .brand {font-size:1.1rem;}
@@ -478,6 +555,15 @@
       *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
       a.button.button-primary.header-cta {animation:none;}
       a.button.button-primary.header-cta::after {display:none;}
+    }
+      .button-primary,.button-blue,.cta-action .button,.plan-summary .button {position:relative;isolation:isolate;overflow:hidden;border:1px solid transparent;background:linear-gradient(var(--orange),var(--orange)) padding-box,conic-gradient(from var(--lightbeam-angle),#192827 0deg,#192827 238deg,#087F7A 270deg,#3B82F6 304deg,#192827 330deg,#192827 360deg) border-box;animation:lightbeam-rotate 3.2s linear infinite;box-shadow:0 0 18px rgba(8,127,122,.16),0 7px 16px rgba(241,121,56,.20);color:#fff;}
+    .button-primary::before,.button-blue::before,.cta-action .button::before,.plan-summary .button::before {content:"";position:absolute;inset:2px;border-radius:inherit;background:radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.19),transparent 70%);z-index:-1;pointer-events:none;}
+    .button-primary::after,.button-blue::after,.cta-action .button::after,.plan-summary .button::after {content:"";position:absolute;top:0;bottom:0;left:-130%;width:55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent);transform:skewX(-22deg);transition:left .45s ease;pointer-events:none;}
+    .button-primary:hover::after,.button-blue:hover::after,.cta-action .button:hover::after,.plan-summary .button:hover::after {left:145%;}
+    .button-primary:hover,.button-blue:hover,.cta-action .button:hover,.plan-summary .button:hover {background:linear-gradient(#f58a4f,#f58a4f) padding-box,conic-gradient(from var(--lightbeam-angle),#192827 0deg,#192827 238deg,#087F7A 270deg,#3B82F6 304deg,#192827 330deg,#192827 360deg) border-box;box-shadow:0 0 25px rgba(8,127,122,.28),0 10px 22px rgba(241,121,56,.27);}
+    @media (prefers-reduced-motion:reduce) {
+      .button-primary,.button-blue,.cta-action .button,.plan-summary .button {animation:none!important;}
+      .button-primary::after,.button-blue::after,.cta-action .button::after,.plan-summary .button::after {display:none!important;}
     }
   </style>
 </head>
@@ -512,7 +598,7 @@
           <h1 aria-label="دخل و خرج کافی شاپت، رستورانت، آبمیوه بستنیت و فست فودیت رو مدیریت کن"><span class="headline-line">دخل و خرج</span><span class="headline-line"><span class="highlight typing-word" aria-hidden="true"><span class="cube-measure">آبمیوه بستنیت</span><span id="word-cube" class="word-cube"><span class="cube-face">کافی شاپت</span><span class="cube-face">رستورانت</span><span class="cube-face">آبمیوه بستنیت</span><span class="cube-face">فست فودیت</span></span></span></span><span class="headline-line">رو مدیریت کن</span></h1>
           <p class="hero-copy">میکل، اولین اپلیکیشن موبایل برای مدیریت سفارش‌ها، مواد اولیه و دخل‌وخرج کسب‌وکار شما.</p>
           <div class="hero-buttons">
-            <a class="button button-primary" href="#pricing">نصب میکل
+            <a class="button button-primary" href="#pricing">رایگان شروع کنید
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
             </a>
             <a class="button button-quiet" href="#features">مشاهده امکانات</a>
@@ -604,14 +690,14 @@
         <div class="plan-builder-shell"><div class="plan-builder">
           <div class="plan-options"><div class="plan-panel-kicker">سفارشی‌سازی پلن</div><h3>امکانات موردنیازتان را انتخاب کنید</h3><p class="plan-intro">برای هر قابلیت، دوره‌ی اشتراک دلخواهتان را جداگانه انتخاب کنید.</p>
             <div class="addon-grid" aria-label="انتخاب امکانات پیشرفته">
-              <article class="addon-card" data-addon="منو آنلاین" data-month="309" data-quarter="834" data-year="2966"><button type="button" class="period-trigger" aria-expanded="false"><span>یک‌ساله</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک منو آنلاین"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="false">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="true">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4zM8 9h8M8 13h5m-5 3h8"/></svg></span><span class="addon-title">منو آنلاین</span></span><span class="addon-price"><strong>۲٬۹۶۶</strong><small>هزار تومان / سالانه</small></span></button></article>
-              <article class="addon-card" data-addon="مدیریت تخفیف‌ها" data-month="155" data-quarter="418" data-year="1488"><button type="button" class="period-trigger" aria-expanded="false"><span>یک‌ساله</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت تخفیف"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="false">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="true">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4zM8 10h8M8 14h5"/><path d="m17 4 3 3m0-3-3 3"/></svg></span><span class="addon-title">مدیریت تخفیف‌ها</span></span><span class="addon-price"><strong>۱٬۴۸۸</strong><small>هزار تومان / سالانه</small></span></button></article>
-              <article class="addon-card" data-addon="مدیریت پرسنل و سطح دسترسی" data-month="250" data-quarter="675" data-year="2400" data-estimate="true"><button type="button" class="period-trigger" aria-expanded="false"><span>یک‌ساله</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت پرسنل و سطح دسترسی"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="false">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="true">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m1-14a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span><span class="addon-title">مدیریت پرسنل و سطح دسترسی</span></span><span class="addon-price"><strong>قیمت به‌زودی</strong><small></small></span></button></article>
-              <article class="addon-card" data-addon="مدیریت میز" data-month="200" data-quarter="540" data-year="1920" data-estimate="true"><button type="button" class="period-trigger" aria-expanded="false"><span>یک‌ساله</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت میز"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="false">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="true">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h16M6 9v10m12-10v10M3 19h18M8 6h8M10 3h4"/></svg></span><span class="addon-title">مدیریت میز</span></span><span class="addon-price"><strong>قیمت به‌زودی</strong><small></small></span></button></article>
-              <article class="addon-card" data-addon="چاپگر (فیش‌پرینتر)" data-month="150" data-quarter="405" data-year="1440" data-estimate="true"><button type="button" class="period-trigger" aria-expanded="false"><span>یک‌ساله</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک چاپگر"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="false">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="true">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8V3h12v5M6 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6zM17 11h1"/></svg></span><span class="addon-title">چاپگر (فیش‌پرینتر)</span></span><span class="addon-price"><strong>قیمت به‌زودی</strong><small></small></span></button></article>
+              <article class="addon-card" data-addon="منو آنلاین" data-month="309000" data-quarter="834000" data-year="2966000"><button type="button" class="period-trigger" aria-expanded="false"><span>سه‌ماهه</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک منو آنلاین"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="true">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="false">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4zM8 9h8M8 13h5m-5 3h8"/></svg></span><span class="addon-title">منو آنلاین</span></span><span class="addon-price"><strong>۸۳۴</strong><small>هزار تومان / سه‌ماهه</small></span></button></article>
+              <article class="addon-card" data-addon="مدیریت تخفیف‌ها" data-month="155000" data-quarter="418000" data-year="1488000"><button type="button" class="period-trigger" aria-expanded="false"><span>سه‌ماهه</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت تخفیف"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="true">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="false">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4zM8 10h8M8 14h5"/><path d="m17 4 3 3m0-3-3 3"/></svg></span><span class="addon-title">مدیریت تخفیف‌ها</span></span><span class="addon-price"><strong>۴۱۸</strong><small>هزار تومان / سه‌ماهه</small></span></button></article>
+              <article class="addon-card" data-addon="مدیریت پرسنل و سطح دسترسی" data-month="112000" data-quarter="302000" data-year="1075000"><button type="button" class="period-trigger" aria-expanded="false"><span>سه‌ماهه</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت پرسنل و سطح دسترسی"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="true">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="false">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m1-14a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span><span class="addon-title">مدیریت پرسنل و سطح دسترسی</span></span><span class="addon-price"><strong>۳۰۲</strong><small>هزار تومان / سه‌ماهه</small></span></button></article>
+              <article class="addon-card" data-addon="مدیریت میز" data-month="243000" data-quarter="656000" data-year="2332000"><button type="button" class="period-trigger" aria-expanded="false"><span>سه‌ماهه</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک مدیریت میز"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="true">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="false">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h16M6 9v10m12-10v10M3 19h18M8 6h8M10 3h4"/></svg></span><span class="addon-title">مدیریت میز</span></span><span class="addon-price"><strong>۶۵۶</strong><small>هزار تومان / سه‌ماهه</small></span></button></article>
+              <article class="addon-card" data-addon="چاپگر (فیش‌پرینتر)" data-month="370000" data-quarter="999000" data-year="3552000"><button type="button" class="period-trigger" aria-expanded="false"><span>سه‌ماهه</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button><div class="period-menu" role="radiogroup" aria-label="انتخاب دوره اشتراک چاپگر"><button type="button" class="period-option" role="radio" data-period="month" aria-checked="false">یک‌ماهه</button><button type="button" class="period-option" role="radio" data-period="quarter" aria-checked="true">سه‌ماهه</button><button type="button" class="period-option" role="radio" data-period="year" aria-checked="false">یک‌ساله</button></div><button class="addon-select" type="button" aria-pressed="false"><span class="addon-check" aria-hidden="true">✓</span><span class="addon-heading"><span class="addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8V3h12v5M6 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6zM17 11h1"/></svg></span><span class="addon-title">چاپگر (فیش‌پرینتر)</span></span><span class="addon-price"><strong>۹۹۹</strong><small>هزار تومان / سه‌ماهه</small></span></button></article>
             </div>
           </div>
-          <aside class="plan-summary" aria-live="polite"><div class="plan-panel-kicker">خلاصه‌ی انتخاب شما</div><h3>امکانات انتخابی</h3><p class="summary-caption">دوره‌ی اشتراک هر قابلیت را جداگانه تنظیم کنید.</p><ul class="selected-list" id="selected-addons"><li class="summary-empty">هنوز قابلیتی انتخاب نشده است.</li></ul><div class="summary-total"><span class="total-label">قیمت کل</span><span class="total-price" id="total-price" role="img" aria-label="صفر تومان" dir="ltr">۰</span><span class="total-currency">تومان</span></div><div class="save-promise"><strong>4.000.000 تومان</strong><span>در هزینه های خود صرفه جویی کنید.</span></div><a class="button" id="plan-quote" href="#pricing">خرید افزونه</a><p class="summary-note">قیمت سه قابلیت دارای برچسب «فرضی» فعلاً نمونه است و قابل‌تغییر خواهد بود.</p></aside>
+          <aside class="plan-summary" aria-live="polite"><div class="plan-panel-kicker">خلاصه‌ی انتخاب شما</div><h3>امکانات انتخابی</h3><p class="summary-caption">دوره‌ی اشتراک هر قابلیت را جداگانه تنظیم کنید.</p><ul class="selected-list" id="selected-addons"><li class="summary-empty">هنوز قابلیتی انتخاب نشده است.</li></ul><div class="summary-total"><span class="total-label">قیمت کل</span><span class="total-price" id="total-price" role="img" aria-label="صفر تومان" dir="ltr">۰</span><span class="total-currency">تومان</span></div><div class="save-promise"><strong id="saving-total">۰ تومان</strong><span>در هزینه‌های خود صرفه‌جویی کنید.</span></div><a class="button" id="plan-quote" href="#pricing">خرید</a></aside>
         </div></div>
       </div>
     </section>
@@ -627,16 +713,53 @@
     <section class="content-section faq" id="faq">
       <div class="container"><div class="section-head"><div class="section-kicker">سؤالات متداول</div><h2>پیش از شروع، این‌ها را بدانید</h2></div>
         <div class="faq-list">
-          <details class="faq-item"><summary>آیا استفاده از میکل رایگان است؟</summary><p>بله. نسخه پایه اپلیکیشن مدیریت کافی‌شاپ میکل کاملاً رایگان است. امکانات پیشرفته به‌صورت جداگانه و بر اساس نیاز شما قابل خرید هستند.</p></details>
-          <details class="faq-item"><summary>آیا چند نفر می‌توانند هم‌زمان از میکل استفاده کنند؟</summary><p>بله. با قابلیت مدیریت پرسنل می‌توانید چندین دستگاه را به یک حساب متصل کرده و برای هر کارمند سطح دسترسی جداگانه تعریف کنید.</p></details>
-          <details class="faq-item"><summary>آیا میکل به سامانه مالیاتی متصل است؟</summary><p>خیر. میکل برای مدیریت داخلی کافی‌شاپ، ثبت فروش، هزینه‌ها و گزارش‌های مالی طراحی شده است و به سامانه مالیاتی متصل نیست.</p></details>
-          <details class="faq-item"><summary>میکل روی چه دستگاه‌هایی اجرا می‌شود؟</summary><p>میکل روی گوشی‌های اندروید، آیفون، تبلت و کامپیوترها (نسخه وب) قابل استفاده است.</p></details>
+          <details class="faq-item"><summary>آیا استفاده از میکل رایگان است؟</summary><div class="faq-answer"><div class="faq-answer-inner"><p>بله. نسخه پایه اپلیکیشن مدیریت کافی‌شاپ میکل کاملاً رایگان است. امکانات پیشرفته به‌صورت جداگانه و بر اساس نیاز شما قابل خرید هستند.</p></div></div></details>
+          <details class="faq-item"><summary>آیا چند نفر می‌توانند هم‌زمان از میکل استفاده کنند؟</summary><div class="faq-answer"><div class="faq-answer-inner"><p>بله. با قابلیت مدیریت پرسنل می‌توانید چندین دستگاه را به یک حساب متصل کرده و برای هر کارمند سطح دسترسی جداگانه تعریف کنید.</p></div></div></details>
+          <details class="faq-item"><summary>آیا میکل به سامانه مالیاتی متصل است؟</summary><div class="faq-answer"><div class="faq-answer-inner"><p>خیر. میکل برای مدیریت داخلی کافی‌شاپ، ثبت فروش، هزینه‌ها و گزارش‌های مالی طراحی شده است و به سامانه مالیاتی متصل نیست.</p></div></div></details>
+          <details class="faq-item"><summary>میکل روی چه دستگاه‌هایی اجرا می‌شود؟</summary><div class="faq-answer"><div class="faq-answer-inner"><p>میکل روی گوشی‌های اندروید، آیفون، تبلت و کامپیوترها (نسخه وب) قابل استفاده است.</p></div></div></details>
         </div>
       </div>
     </section>
 
     
   
+
+    <section class="testimonials-section" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">صدای همراهان میکل</div>
+          <h2 id="testimonials-title">نظرات کاربران</h2>
+        </div>
+        <div class="testimonials-carousel">
+          <button class="testimonial-arrow" type="button" data-testimonial-direction="-1" aria-label="نظرهای قبلی">←</button>
+          <div class="testimonials-window" tabindex="0" aria-label="نمایش سه نظر کاربر">
+            <div class="testimonials-track" id="testimonials-track">
+              <article class="testimonial-card">
+                <div class="testimonial-meta"><h3 class="testimonial-author">کافه بستنی پرواز</h3><span class="testimonial-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10H3V10zm11 0c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10h-7V10z"/></svg></span></div>
+                <p>بخش انبار رو پیشنهاد دادم، گفتن قراره به‌زودی اضافه بشه. امیدوارم اضافه بشه.</p>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-meta"><h3 class="testimonial-author">کافه آکادمی</h3><span class="testimonial-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10H3V10zm11 0c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10h-7V10z"/></svg></span></div>
+                <p>مدیریت میزها خیلی جمع‌وجور و راحت شده، مخصوصاً وقتایی که شلوغه.</p>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-meta"><h3 class="testimonial-author">آبمیوه بستنی شاد</h3><span class="testimonial-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10H3V10zm11 0c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10h-7V10z"/></svg></span></div>
+                <p>مدیریت پرسنل خیلی راحت‌تر شده و هرکس دسترسی خودش رو داره.</p>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-meta"><h3 class="testimonial-author">کافه کافئین</h3><span class="testimonial-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10H3V10zm11 0c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10h-7V10z"/></svg></span></div>
+                <p>فروش‌های قبلی رو راحت می‌بینم، خیلی به کارم میاد. پشتیبانی هم سریع جواب میده.</p>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-meta"><h3 class="testimonial-author">کافه رستوران واران</h3><span class="testimonial-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10H3V10zm11 0c0-4 2-6 6-7v3c-2 .5-3 1.5-3 3h4v10h-7V10z"/></svg></span></div>
+                <p>در کل راضیم، کار باهاش راحته. فقط منتظر اضافه شدن باشگاه مشتریانم.</p>
+              </article>
+            </div>
+          </div>
+          <button class="testimonial-arrow" type="button" data-testimonial-direction="1" aria-label="نظرهای بعدی">→</button>
+        </div>
+      </div>
+    </section>
 
     <section class="blog-section" id="blog">
       <div class="container">
@@ -651,13 +774,54 @@
 
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <div class="footer-main">
-        <div><a class="brand" href="#top" aria-label="میکِل، صفحه اصلی"><span class="brand-mark" aria-hidden="true"><img src="assets/mikel-logo.png" alt=""></span><span>میکِل</span></a><p class="footer-description">ابزارهای ساده‌تر برای مدیریت مالی و روزمره‌ی کافه‌ها و رستوران‌ها.</p></div>
-        <div class="footer-links"><a href="#features">قابلیت‌ها</a><a href="#workflow">روش کار</a><a href="#pricing">تعرفه‌ها</a><a href="#blog">بلاگ</a></div>
+<div class="footer-social-card">
+          <div class="footer-social-icons" aria-label="&#x634;&#x628;&#x6A9;&#x647;&#x200C;&#x647;&#x627;&#x6CC; &#x627;&#x62C;&#x62A;&#x645;&#x627;&#x639;&#x6CC;">
+            <span class="footer-social-icon" role="img" aria-label="&#x644;&#x6CC;&#x646;&#x6A9;&#x62F;&#x6CC;&#x646;"><img src="assets/figma-linkedin.svg" alt=""></span>
+            <span class="footer-social-icon" role="img" aria-label="&#x627;&#x6CC;&#x646;&#x633;&#x62A;&#x627;&#x6AF;&#x631;&#x627;&#x645;"><img src="assets/figma-instagram.svg" alt=""></span>
+            <span class="footer-social-icon" role="img" aria-label="&#x6CC;&#x648;&#x62A;&#x6CC;&#x648;&#x628;"><img src="assets/figma-play.svg" alt=""></span>
+            <span class="footer-social-icon" role="img" aria-label="&#x622;&#x67E;&#x627;&#x631;&#x627;&#x62A;"><img src="assets/figma-broadcast.svg" alt=""></span>
+          </div>
+          <div class="footer-social-copy"><img class="footer-social-brand" src="assets/mikel-logo.png" alt="&#x645;&#x6CC;&#x6A9;&#x644;" width="744" height="744"><h3 class="footer-social-title">&#x645;&#x6CC;&#x6A9;&#x644; &#x631;&#x627; &#x62F;&#x631; &#x634;&#x628;&#x6A9;&#x647;&#x200C;&#x647;&#x627;&#x6CC; &#x627;&#x62C;&#x62A;&#x645;&#x627;&#x639;&#x6CC; &#x62F;&#x646;&#x628;&#x627;&#x644; &#x6A9;&#x646;&#x6CC;&#x62F;</h3></div>
+        </div>
+              <div class="footer-main">
+        <nav class="footer-links-column" aria-label="درباره میکل">
+          <h3 class="footer-column-title">درباره میکل</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html">درباره ما</a></li>
+            <li><span>پشتیبانی</span></li>
+          </ul>
+        </nav>
+        <nav class="footer-links-column" aria-label="راهنما">
+          <h3 class="footer-column-title">راهنما</h3>
+          <ul class="footer-links-list">
+            <li><a href="#pricing">تعرفه ها</a></li>
+            <li><a href="#blog">وبلاگ</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-links-column" aria-label="قوانین و اطلاعات">
+          <h3 class="footer-column-title">قوانین و اطلاعات</h3>
+          <ul class="footer-links-list">
+            <li><span>قوانین و مقررات</span></li>
+            <li><span>حریم خصوصی</span></li>
+          </ul>
+        </nav>
+        <div class="footer-brand">
+          <h2>میکل: پلتفرم مدیریت کافه رستوران‌ها</h2>
+          <address class="footer-address">آدرس: اصفهان، میدان آزادی، دانشگاه اصفهان، مرکز رشد علوم انسانی، فناوری‌های نرم و صنایع خلاق</address>
+          <div class="footer-logos" aria-label="لوگوها و نشان‌ها">
+            <div class="footer-logo"><img src="assets/fani.png" alt="گواهی بررسی فنی سازمان فناوری اطلاعات ایران" width="250" height="231" loading="lazy"></div>
+            <div class="footer-logo"><img src="assets/shahrak.png" alt="شهرک علمی و تحقیقاتی اصفهان" width="350" height="420" loading="lazy"></div>
+            <a class="footer-logo" href="https://rahkarapp.ir/" aria-label="شرکت راهکار‌های یکپارچه کاربردی"><img src="assets/rahkar-logo1.png" alt="راهکار" width="500" height="157" loading="lazy"></a>
+          </div>
+        </div>
       </div>
-      <div class="footer-bottom"><span>© ۱۴۰۵ میکِل · تمامی حقوق محفوظ است.</span><span>نام و هویت بصری این نسخه نمونه و قابل‌تغییر است.</span></div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>© کلیه حقوق پلتفرم میکل متعلق به <a href="https://rahkarapp.ir/">شرکت راهکار‌های یکپارچه کاربردی</a> می‌باشد.</p>
+        </div>
+      </div>
     </div>
   </footer>
   <script>
@@ -671,6 +835,89 @@
       }, 1680);
     }
 
+    const testimonialTrack = document.querySelector('#testimonials-track');
+    const testimonialViewport = document.querySelector('.testimonials-window');
+    const testimonialCarousel = document.querySelector('.testimonials-carousel');
+    if (testimonialTrack && testimonialViewport && testimonialCarousel) {
+      const originalTestimonials = [...testimonialTrack.children];
+      const cloneCard = index => {
+        const clone = originalTestimonials[index].cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.dataset.carouselClone = 'true';
+        return clone;
+      };
+      testimonialTrack.prepend(cloneCard(originalTestimonials.length - 2), cloneCard(originalTestimonials.length - 1));
+      testimonialTrack.append(cloneCard(0), cloneCard(1));
+      let testimonialPosition = 1;
+      let testimonialStep = 0;
+      let testimonialTimer = null;
+      let testimonialPaused = false;
+      let testimonialAnimating = false;
+
+      function setTestimonialCenter() {
+        [...testimonialTrack.children].forEach(card => card.classList.remove('is-center'));
+        testimonialTrack.children[testimonialPosition + 1]?.classList.add('is-center');
+      }
+      function setTestimonialPosition(instant = false) {
+        if (instant) testimonialTrack.style.transition = 'none';
+        testimonialTrack.style.transform = 'translate3d(' + (-testimonialPosition * testimonialStep) + 'px,0,0)';
+        setTestimonialCenter();
+        if (instant) {
+          testimonialTrack.getBoundingClientRect();
+          testimonialTrack.style.transition = '';
+        }
+      }
+      function sizeTestimonials() {
+        const gap = parseFloat(getComputedStyle(testimonialTrack).gap) || 16;
+        const cardWidth = (testimonialViewport.clientWidth - gap * 2) / 3;
+        testimonialStep = cardWidth + gap;
+        [...testimonialTrack.children].forEach(card => { card.style.width = cardWidth + 'px'; });
+        setTestimonialPosition(true);
+      }
+      function stopTestimonials() {
+        window.clearTimeout(testimonialTimer);
+        testimonialTimer = null;
+      }
+      function scheduleTestimonials() {
+        stopTestimonials();
+        if (!reduceMotion && !testimonialPaused) {
+          testimonialTimer = window.setTimeout(() => moveTestimonials(1), 1500);
+        }
+      }
+      function moveTestimonials(direction) {
+        if (testimonialAnimating) return;
+        stopTestimonials();
+        testimonialAnimating = true;
+        testimonialPosition += direction;
+        setTestimonialPosition();
+        const onTransitionEnd = event => {
+          if (event.propertyName !== 'transform') return;
+          testimonialTrack.removeEventListener('transitionend', onTransitionEnd);
+          if (testimonialPosition === 0) {
+            testimonialPosition = originalTestimonials.length;
+            setTestimonialPosition(true);
+          } else if (testimonialPosition === originalTestimonials.length + 1) {
+            testimonialPosition = 1;
+            setTestimonialPosition(true);
+          }
+          testimonialAnimating = false;
+          scheduleTestimonials();
+        };
+        testimonialTrack.addEventListener('transitionend', onTransitionEnd);
+      }
+      testimonialCarousel.querySelectorAll('[data-testimonial-direction]').forEach(button => {
+        button.addEventListener('click', () => moveTestimonials(Number(button.dataset.testimonialDirection)));
+      });
+      testimonialCarousel.addEventListener('mouseenter', () => { testimonialPaused = true; stopTestimonials(); });
+      testimonialCarousel.addEventListener('mouseleave', () => { testimonialPaused = false; scheduleTestimonials(); });
+      testimonialCarousel.addEventListener('focusin', () => { testimonialPaused = true; stopTestimonials(); });
+      testimonialCarousel.addEventListener('focusout', event => {
+        if (!testimonialCarousel.contains(event.relatedTarget)) { testimonialPaused = false; scheduleTestimonials(); }
+      });
+      sizeTestimonials();
+      window.addEventListener('resize', sizeTestimonials);
+      scheduleTestimonials();
+    }
     const workflowItems = [...document.querySelectorAll('.workflow-faq-item')];
     const workflowVisual = document.querySelector('#workflow-visual');
     const workflowShot = document.querySelector('#workflow-shot');
@@ -750,9 +997,8 @@
       const unit = card.querySelector('.addon-price small');
       card.dataset.selectedPeriod = period;
       card.querySelector('.period-trigger span').textContent = subscriptionPeriods[period].label;
-      price.textContent = amount ? formatFa(Number(amount)) : 'قیمت به‌زودی';
-      const estimateLabel = card.dataset.estimate === 'true' ? ' · فرضی' : '';
-      unit.textContent = amount ? `هزار تومان / ${subscriptionPeriods[period].unit}${estimateLabel}` : '';
+      price.textContent = amount ? formatFa(Number(amount) / 1000) : 'قیمت به‌زودی';
+      unit.textContent = amount ? `هزار تومان / ${subscriptionPeriods[period].unit}` : '';
       card.querySelectorAll('.period-option').forEach(option => option.setAttribute('aria-checked', String(option.dataset.period === period)));
     }
     let previousTotal = null;
@@ -796,16 +1042,24 @@
     function updatePlanSummary() {
       const selected = addonCards.filter(card => card.querySelector('.addon-select').getAttribute('aria-pressed') === 'true');
       selectedAddons.innerHTML = selected.length ? selected.map(card => {
-        const period = card.dataset.selectedPeriod || 'year';
+        const period = card.dataset.selectedPeriod || 'quarter';
         const amount = card.dataset[period];
-        const priceText = amount ? ` · ${formatFa(Number(amount))} هزار تومان` : ' · قیمت به‌زودی اعلام می‌شود';
+        const priceText = amount ? ` · ${formatFa(Number(amount))} تومان` : ' · قیمت به‌زودی اعلام می‌شود';
         return `<li>${card.dataset.addon} · ${subscriptionPeriods[period].label}${priceText}</li>`;
       }).join('') : '<li class="summary-empty">هنوز قابلیتی انتخاب نشده است.</li>';
-      const total = selected.reduce((sum, card) => sum + Number(card.dataset[card.dataset.selectedPeriod || "year"] || 0) * 1000, 0);
+      const total = selected.reduce((sum, card) => sum + Number(card.dataset[card.dataset.selectedPeriod || 'quarter'] || 0), 0);
       renderTotalPrice(total);
+      const savings = selected.reduce((sum, card) => {
+        const period = card.dataset.selectedPeriod || 'quarter';
+        const monthly = Number(card.dataset.month || 0);
+        if (period === 'month') return sum;
+        const months = period === 'quarter' ? 3 : 12;
+        return sum + Math.max(0, monthly * months - Number(card.dataset[period] || 0));
+      }, 0);
+      document.querySelector('#saving-total').textContent = `${formatFa(savings)} تومان`;
     }
     addonCards.forEach(card => {
-      updateCardPrice(card, 'year');
+      updateCardPrice(card, 'quarter');
       card.querySelector('.addon-select').addEventListener('click', event => {
         const button = event.currentTarget;
         const active = button.getAttribute('aria-pressed') !== 'true';
